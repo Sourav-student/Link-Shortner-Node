@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+
+*{
+  padding: 0;
+  margin: 0;
+}
+
+body{
+  display: flex;
+  justify-content: center;
+  font-family:Lato, sans-serif;
+  font-weight:600;
+  background-color: rgba(101, 57, 0, 0.449);
+}
+
+main{
+  margin: 30px;
+  width: 450px;
+  height: auto;
+  padding: 10px;
+  border-radius:20px;
+  background-color: rgba(194, 134, 56, 0.815);
+  box-shadow: 5px 5px 20px rgb(20, 11, 11);
+}
+
+#formSub{
+display: flex;
+flex-direction: column;
+}
+
+input{
+  padding:5px 10px;
+  margin: 10px;
+  font-size: 15px;
+  background-color:rgb(244, 211, 168) ;
+  outline-color: orange;
+}
+
+#btn{
+  padding: 5px 10px;
+  margin-top: 10px;
+  width: fit-content;
+  cursor: pointer;
+  font-size: 17px;
+  font-weight: 500;
+  background-color: rgba(14, 201, 58, 0.49);
+  outline: none;
+  border-radius: 10px;
+}
+
+h3{
+  margin-top: 10px;
+}
+
+#shortSec{
+  list-style: none;
+}
+
+#shortSec li{
+  padding:5px 20px; 
+  margin:10px 5px;
+  background-color:rgb(209, 155, 89);
+  border-radius: 10px;
+}
+
+.text-center{
+  text-align: center;
+}

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Short Your Link</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <main>
+    <h1 class="text-center">Link-Shorter.in</h1>
+    <form id="formSub">
+      <label for="UnShortUrl">UnShort URl :</label>
+      <input type="text" name="url" placeholder="Enter Your Unshorted URL" required>
+      <label for="shortUrl">Short Code :</label>
+      <input type="text" name="shortCode" placeholder="Enter your Short Code" required>
+      <button id="btn" type="submit">Shorted</button>
+    </form>
+
+    <h3 class="text-center">Shorted URLs</h3>
+    <ul id="shortSec" class="text-center"><li>No Shorted URLs found!</li></ul>
+  </main>
+  <script>
+    const formSub = document.getElementById('formSub');
+    const shortSec = document.getElementById('shortSec');
+
+    const fetchShortUrl = async () => {
+      const response = await fetch("/links");
+      const links = await response.json();
+      console.log("links : ", links)
+      shortSec.innerHTML = ""
+
+      for (const [shortenCode, url] of Object.entries(links)) {
+        const li = document.createElement('li');
+        li.innerHTML = `<a href = "/${shortenCode}" target = "_blank">${window.location.origin}/${shortenCode}</a> - ${url}`
+
+        shortSec.appendChild(li);
+      }
+    }
+
+    formSub.addEventListener('submit', async (event) => {
+      event.preventDefault()
+      const formData = new FormData(event.target);
+      const url = formData.get("url");
+      const shortCode = formData.get("shortCode");
+
+      try {
+        const res = await fetch("/shorten", {
+          method: "POST",
+          headers: { "Content-Type": "Application/json" },
+          body: JSON.stringify({ url, shortCode })
+        })
+
+        if (res.ok) {
+          alert("form summited successfully");
+          fetchShortUrl();
+          formSub.reset()
+        }
+        else {
+          alert("Short code already exist please try again.");
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    });
+  </script>
+</body>
+
+</html>
