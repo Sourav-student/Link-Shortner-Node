@@ -3,7 +3,7 @@ import fs from 'fs';
 import path from 'path';
 import crypto from 'crypto'
 
-const port = 3000;
+const port = process.env.PORT;
 const FILE_PATH = path.join("data", "link.json");
 
 const fileData = async (res, filePath, textType) => {
